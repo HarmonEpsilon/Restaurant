@@ -7,3 +7,10 @@
  * @author Landon Mote
  * @date 2/12/2017
  */
+
+#include <string>
+#include "party.h"
+
+Party::Party();
+Party::Party(const string& reservationName, int numDiners, int timeRequired);
+Party::~Party();
