@@ -4,7 +4,7 @@
  * @brief
  *    Template for doubly linked list class.
  *
- * @author Judy Challinger & Your Name Here!
+ * @author Judy Challinger & Landon Mote
  * @date 1/1/16
  */
 
@@ -42,9 +42,8 @@ class DoublyLinkedList {
  */
 template <class T>
 DoublyLinkedList<T>::Node::Node() {
-
-   // Your code here...
-
+  next = nullptr;
+  prev = nullptr;
 }
 
 /**
@@ -52,9 +51,9 @@ DoublyLinkedList<T>::Node::Node() {
  */
 template <class T>
 DoublyLinkedList<T>::DoublyLinkedList() {
-
-   // Your code here...
-
+  head = nullptr;
+  tail = nullptr;
+  current = nullptr;
 }
 
 /**
@@ -62,9 +61,13 @@ DoublyLinkedList<T>::DoublyLinkedList() {
  */
 template <class T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
-
-   // Your code here...
-
+  Node* ptr = head;
+  while(ptr != nullptr) {
+    Node* temp = ptr;
+    ptr = ptr->next;
+    delete temp->value;
+    delete temp;
+  }
 }
 
 /**
@@ -78,9 +81,7 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
  */
 template <class T>
 void DoublyLinkedList<T>::append(T* data) {
-
-   // Your code here...
-
+  
 }
 
 /**
