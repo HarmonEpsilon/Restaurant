@@ -158,7 +158,7 @@ T* DoublyLinkedList<T>::remove() {
     return head->data;
   }
 
-  if(currrent->prev == nullptr && current->next == nullptr) {
+  if(current->prev == nullptr && current->next == nullptr) {
     head = current->next;
     tail = current->prev;
     delete current->data;
