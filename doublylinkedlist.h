@@ -42,6 +42,7 @@ class DoublyLinkedList {
  */
 template <class T>
 DoublyLinkedList<T>::Node::Node() {
+  data = nullptr;
   next = nullptr;
   prev = nullptr;
 }
@@ -61,12 +62,12 @@ DoublyLinkedList<T>::DoublyLinkedList() {
  */
 template <class T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
-  Node* ptr = head;
-  while(ptr != nullptr) {
-    Node* temp = ptr;
-    ptr = ptr->next;
-    delete temp->value;
-    delete temp;
+  Node* first = head;
+  while(first != nullptr) {
+    Node* cur = first;
+    first = first->next;
+    delete cur->data;
+    delete cur;
   }
 }
 
@@ -81,8 +82,22 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
  */
 template <class T>
 void DoublyLinkedList<T>::append(T* data) {
-  
+  if(head == nullptr && tail == nullptr ) {
+    Node* item = new Node(new T(data));
+    head = item;
+    tail = item;
+    current = head;
+
+    return;
+  }
+
+  Node* item = new Node(new T(data));
+  item->prev = tail->prev;
+  tail->prev->next = item;
+  tail = item;
+  return;
 }
+
 
 /**
  * @brief   Get the first thing on the list.
@@ -94,9 +109,11 @@ void DoublyLinkedList<T>::append(T* data) {
  */
 template <class T>
 T* DoublyLinkedList<T>::first() {
+  if(head == nullptr && tail == nullptr) {
+    return nullptr;
+  }
 
-   // Your code here...
-
+  return head->data;
 }
 
 /**
@@ -110,9 +127,12 @@ T* DoublyLinkedList<T>::first() {
  */
 template <class T>
 T* DoublyLinkedList<T>::next() {
+  if(current->next == nullptr) {
+    return nullptr;
+  }
 
-   // Your code here...
-
+  current = current->next;
+  return current->data;
 }
 
 /**
@@ -126,9 +146,32 @@ T* DoublyLinkedList<T>::next() {
  */
 template <class T>
 T* DoublyLinkedList<T>::remove() {
+  if(head == nullptr && tail == nullptr) {
+    return nullptr;
+  }
 
-   // Your code here...
+  if(current->prev == nullptr) {
+    
+  }
 
+  if(current->next == nullptr) {
+    tail->prev->next = nullptr;
+    tail = tail->prev;
+    delete current->data;
+    delete current;
+    return nullptr;
+  }
+
+  if(current->next != nullptr && current->prev != nullptr) {
+    Node* after = current->next;
+
+    current->prev->next = current->next;
+    current->next->prev = current->prev;
+    delete current->data;
+    delete current;
+
+    return after->data;
+  }
 }
 
 #endif // CSCI_311_DOUBLYLINKEDLIST_H
