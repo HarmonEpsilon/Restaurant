@@ -9,9 +9,26 @@
  */
 
 #include <string>
+#include <iostream>
 #include "party.h"
 #include "table.h"
 #include "restaurant.h"
 
-void getInput();                    // read the input from cin
+using namespace std;
+
+void Restaurant::getInput() {
+    string server, name, id;
+    int serving_tables = 0;
+
+    while (name != "party") {
+        cin >> name >> id >> server;
+        
+        Table serving(name, serving_tables, server);
+        available.append(serving);
+    }
+
+    while (name == "party") {
+
+    }
+}
 void serveParties();
