@@ -20,7 +20,7 @@ class Table {
 
 public:
    Table();
-   Table(const string& tableID, int numSeats, const string& serverName);
+   Table(const string& table_id, int seats, const string& server);
    ~Table();
    const string* getTableID() const { return tableID; }
    int getNumSeats() const { return numSeats; }

@@ -19,7 +19,7 @@ class Party {
 
 public:
    Party();
-   Party(const string& reservationName, int numDiners, int timeRequired);
+   Party(const string& reservation, int diners, int time_req);
    ~Party();
    const string* getReservationName() const { return reservationName; }
    int getNumDiners() const { return numDiners; }

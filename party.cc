@@ -11,6 +11,18 @@
 #include <string>
 #include "party.h"
 
-Party::Party();
-Party::Party(const string& reservationName, int numDiners, int timeRequired);
-Party::~Party();
+Party::Party() {
+    reservationName = nullptr;
+    numDiners = 0;
+    timeRequired = 0;
+}
+
+Party::Party(const string& reservation, int diners, int time_req) {
+    reservationName = reservation;
+    numDiners = diners;
+    timeRequired = time_req;
+}
+
+Party::~Party() {
+    
+}
