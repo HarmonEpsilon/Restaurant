@@ -25,5 +25,7 @@ Party::Party(const string& reservation, int diners, int time_req) {
 }
 
 Party::~Party() {
-    
+    reservationName = nullptr;
+    numDiners = 0;
+    timeRequired = 0;
 }

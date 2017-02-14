@@ -39,6 +39,8 @@ void Restaurant::getInput() {
 
 void Restaurant::serveParties() {
     while(!waiting.empty()) {
-        for
+        for(Table* reserved = occupied.first(); reserved != nullptr; reserved = occupied.next()) {
+            
+        }
     }
 }

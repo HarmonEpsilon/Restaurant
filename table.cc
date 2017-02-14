@@ -9,6 +9,7 @@
  */
 
 #include <string>
+#include "party.h"
 #include "table.h"
 #include "doublylinkedlist.h"
 
@@ -38,6 +39,5 @@ Table::~Table() {
 
 void Table::seatParty(const Party* newParty) {
     setTimer(newParty->getTimeRequired());
-
-    
+    party = newParty;
 }
