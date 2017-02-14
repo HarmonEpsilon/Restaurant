@@ -17,18 +17,26 @@
 using namespace std;
 
 void Restaurant::getInput() {
-    string server, name, id;
-    int serving_tables = 0;
+    string server, name, id, input;
+    int serving = 0, timer = 0;
 
-    while (name != "party") {
-        cin >> name >> id >> server;
-        
-        Table serving(name, serving_tables, server);
-        available.append(serving);
-    }
+    while(cin >> input) {
+        if(input == "end") {
+            break;
+        }
 
-    while (name == "party") {
-
+        if(name == "table") {
+            cin >> name >> serving >> server;
+            Table orderUp(name, serving, server);
+            available.append(orderUp);
+        } else if (name == "party") {
+            cin >> serving >> name >> timer;
+            Party orderOut(name, serving, timer);
+            waiting.append(orderOut);
+        }
     }
 }
-void serveParties();
+
+void Restaurant::serveParties() {
+    
+}

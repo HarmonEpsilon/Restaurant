@@ -9,6 +9,7 @@
  */
 
 #include <string>
+#include "doublylinkedlist.h"
 #include "party.h"
 
 Party::Party() {

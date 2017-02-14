@@ -10,6 +10,7 @@
 
 #include <string>
 #include "table.h"
+#include "doublylinkedlist.h"
 
 
 Table::Table() {
@@ -27,9 +28,16 @@ Table::Table(const string& table_id, int seats, const string& server) {
 }
 
 Table::~Table() {
-    
+    delete tableID;
+    tableID = nullptr;
+    delete serverName;
+    serverName = nullptr;
+    delete party;
+    party = nullptr;
 }
 
 void Table::seatParty(const Party* newParty) {
+    setTimer(newParty->getTimeRequired());
 
+    
 }
