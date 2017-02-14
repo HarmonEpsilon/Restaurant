@@ -38,5 +38,7 @@ void Restaurant::getInput() {
 }
 
 void Restaurant::serveParties() {
-    
+    while(!waiting.empty()) {
+        for
+    }
 }
