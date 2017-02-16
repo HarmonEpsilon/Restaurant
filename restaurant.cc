@@ -27,11 +27,11 @@ void Restaurant::getInput() {
             break;
         }
 
-        if(name == "table") {
+        if(input == "table") {
             cin >> name >> serving >> server;
             Table* orderUp = new Table(name, serving, server);
             available.append(orderUp);
-        } else if (name == "party") {
+        } else if (input == "party") {
             cin >> serving >> name >> timer;
             Party* orderOut = new Party(name, serving, timer);
             waiting.append(orderOut);

@@ -25,6 +25,7 @@ Party::Party(const string& reservationName, int numDiners, int timeRequired) {
 }
 
 Party::~Party() {
+    delete reservationName;
     reservationName = nullptr;
     numDiners = 0;
     timeRequired = 0;
