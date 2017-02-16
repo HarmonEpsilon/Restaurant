@@ -42,3 +42,4 @@ void Table::seatParty(const Party* newParty) {
     setTimer(newParty->getTimeRequired());
     party = newParty;
 }
+
