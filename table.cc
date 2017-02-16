@@ -23,10 +23,10 @@ Table::Table() {
     party = nullptr; 
 }
 
-Table::Table(const string& table_id, int seats, const string& server) {
-    tableID = new string(table_id);
+Table::Table(const string& tableID, int numSeats, const string& serverName) {
+    tableID = new string(tableID);
     numSeats = seats;
-    serverName = new string(server);
+    serverName = new string(serverName);
 }
 
 Table::~Table() {
