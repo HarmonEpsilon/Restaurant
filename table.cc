@@ -11,6 +11,7 @@
 #include <string>
 #include "party.h"
 #include "table.h"
+#include "restaurant.h"
 #include "doublylinkedlist.h"
 
 

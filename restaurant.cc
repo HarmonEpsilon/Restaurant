@@ -13,6 +13,7 @@
 #include "party.h"
 #include "table.h"
 #include "restaurant.h"
+#include "doublylinkedlist.h"
 
 using namespace std;
 
@@ -40,7 +41,38 @@ void Restaurant::getInput() {
 void Restaurant::serveParties() {
     while(!waiting.empty()) {
         for(Table* reserved = occupied.first(); reserved != nullptr; reserved = occupied.next()) {
-            
+            timer--;
+
+            if(timer == 0) {
+                cout << occupied.getReservationName() << " finished" << endl;
+                occupied.remove();
+                reserved.clear();
+                available.append(reserved);
+            }
         }
+
+        for(Party* in_line = waiting.first(); in_line != nullptr; in_line = waiting.next()) {
+            for(Table* up_next = available.first(); up_next != nullptr; up_next = available.next()) {
+                if(in_line.getNumDiners() <= up_next.getNumSeats()) {
+                    cout << in_line.getReservationName() << " seated" << endl;
+                    up_next.seatParty(in_line);
+                    occupied.append(up_next);
+                    available.remove();
+                }
+            }
+        }
+
+        /*if(waiting.empty()) {
+            
+        }*/
     }
+}
+
+int main() {
+    Restaurant coleco;
+
+    coleco.getInput();
+    coleco.serveParties();
+
+    return 0;
 }
