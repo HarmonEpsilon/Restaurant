@@ -27,7 +27,7 @@ class DoublyLinkedList {
    class Node {
     public:
       Node();
-      Node(T* data);
+      Node(T* t_data);
       Node* next;
       Node* prev;
       T* data;
@@ -38,11 +38,22 @@ class DoublyLinkedList {
 };
 
 /**
- * @brief   Node constructor.
+ * @brief   Node default constructor.
  */
 template <class T>
 DoublyLinkedList<T>::Node::Node() {
   data = nullptr;
+  next = nullptr;
+  prev = nullptr;
+}
+
+
+/**
+ * @brief   Node constructor
+ */
+template <class T>
+DoublyLinkedList<T>::Node::Node(T* t_data) {
+  data = t_data;
   next = nullptr;
   prev = nullptr;
 }
@@ -83,7 +94,7 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
 template <class T>
 void DoublyLinkedList<T>::append(T* data) {
   if(head == nullptr && tail == nullptr ) {
-    Node* item = new Node(new T(data));
+    Node* item = new Node(data);
     head = item;
     tail = item;
     current = head;
@@ -91,7 +102,7 @@ void DoublyLinkedList<T>::append(T* data) {
     return;
   }
 
-  Node* item = new Node(new T(data));
+  Node* item = new Node(data);
   item->prev = tail->prev;
   tail->prev->next = item;
   tail = item;
@@ -184,6 +195,8 @@ T* DoublyLinkedList<T>::remove() {
 
     return after->data;
   }
+
+  return nullptr;
 }
 
 #endif // CSCI_311_DOUBLYLINKEDLIST_H

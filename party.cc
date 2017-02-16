@@ -19,7 +19,7 @@ Party::Party() {
 }
 
 Party::Party(const string& reservation, int diners, int time_req) {
-    reservationName = reservation;
+    reservationName = new string(reservation);
     numDiners = diners;
     timeRequired = time_req;
 }

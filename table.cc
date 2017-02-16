@@ -24,9 +24,9 @@ Table::Table() {
 }
 
 Table::Table(const string& table_id, int seats, const string& server) {
-    tableID = table_id;
+    tableID = new string(table_id);
     numSeats = seats;
-    serverName = server;
+    serverName = new string(server);
 }
 
 Table::~Table() {
