@@ -67,7 +67,7 @@ void Restaurant::serveParties() {
             }
         }
 
-        for(map<string,int>::const_iterator it = servers.begin(); it != servers.end(); it++) {
+        for(auto it = servers.begin(); it != servers.end(); it++) {
             cout << it->first << " served by " << it->second << endl;
         }
     }
