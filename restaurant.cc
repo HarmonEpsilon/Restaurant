@@ -10,13 +10,13 @@
 
 #include <string>
 #include <iostream>
-#include <std::map>
 #include "party.h"
 #include "table.h"
 #include "restaurant.h"
 #include "doublylinkedlist.h"
 
 using namespace std;
+using std::map;
 
 void Restaurant::getInput() {
     string server, name, id, input;
@@ -67,12 +67,8 @@ void Restaurant::serveParties() {
             }
         }
 
-        if(waiting.empty() && occupied.empty()) {
-            for(map<char,int>::iterator it = servers.begin(); it != servers.end(); it++) {
-                cout << it->first << " served by " << it->second << endl;
-            }
-
-            return;
+        for(map<string,int>::const_iterator it = servers.begin(); it != servers.end(); it++) {
+            cout << it->first << " served by " << it->second << endl;
         }
     }
 }
