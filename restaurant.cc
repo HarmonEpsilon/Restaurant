@@ -18,6 +18,14 @@
 using namespace std;
 using std::map;
 
+/**
+ * @brief   Gets input and places them in the doubly linked list queues
+ * @param   Nothing
+ * @return  Nothing
+ *
+ * Begins input loop for the restaurant, seating appropriate parties and tables
+ * in appropriate queues.
+ */
 void Restaurant::getInput() {
     string server, name, id, input;
     int serving = 0, timer = 0;
@@ -39,6 +47,14 @@ void Restaurant::getInput() {
     }
 }
 
+/**
+ * @brief   Serves tables and parties from queues
+ * @param   Nothing
+ * @return  Nothing
+ *
+ * Seats parties at tables, as well as seating people at tables,
+ * when enough space becomes available at the first table it can find.
+ */
 void Restaurant::serveParties() {
     string waiter;
 
@@ -73,6 +89,14 @@ void Restaurant::serveParties() {
     }
 }
 
+/**
+ * @brief   Opens restaurant by starting functions
+ * @param   Nothing
+ * @return  0
+ *
+ * Creates a new restaurant and starts functions for getting input
+ * and serving parties.
+ */
 int main() {
     Restaurant coleco;
 
