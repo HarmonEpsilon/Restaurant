@@ -84,7 +84,7 @@ void Restaurant::serveParties() {
         }
 
         for(auto it = servers.begin(); it != servers.end(); it++) {
-            cout << it->first << " served by " << it->second << endl;
+            cout << it->first << " served " << it->second << endl;
         }
     }
 }
