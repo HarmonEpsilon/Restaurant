@@ -10,6 +10,7 @@
 
 #include <string>
 #include <iostream>
+#include <std::map>
 #include "party.h"
 #include "table.h"
 #include "restaurant.h"
@@ -39,6 +40,8 @@ void Restaurant::getInput() {
 }
 
 void Restaurant::serveParties() {
+    string waiter;
+
     while(!waiting.empty()) {
         for(Table* reserved = occupied.first(); reserved != nullptr; reserved = occupied.next()) {
             reserved->decrementTimer();
@@ -55,6 +58,8 @@ void Restaurant::serveParties() {
             for(Table* up_next = available.first(); up_next != nullptr; up_next = available.next()) {
                 if(in_line->getNumDiners() <= up_next->getNumSeats()) {
                     cout << in_line->getReservationName() << " seated" << endl;
+                    waiter = *(up_next->getServerName());
+                    servers[waiter] = servers[waiter] + in_line->getNumDiners();
                     up_next->seatParty(in_line);
                     occupied.append(up_next);
                     available.remove();
@@ -62,9 +67,13 @@ void Restaurant::serveParties() {
             }
         }
 
-        /*if(waiting.empty()) {
-            
-        }*/
+        if(waiting.empty() && occupied.empty()) {
+            for(map<char,int>::iterator it = servers.begin(); it != servers.end(); it++) {
+                cout << it->first << " served by " << it->second << endl;
+            }
+
+            return;
+        }
     }
 }
 
