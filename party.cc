@@ -18,10 +18,10 @@ Party::Party() {
     timeRequired = 0;
 }
 
-Party::Party(const string& reservation, int diners, int time_req) {
-    reservationName = new string(reservation);
-    numDiners = diners;
-    timeRequired = time_req;
+Party::Party(const string& reservationName, int numDiners, int timeRequired) {
+    this->reservationName = new string(reservationName);
+    this->numDiners = numDiners;
+    this->timeRequired = timeRequired;
 }
 
 Party::~Party() {
