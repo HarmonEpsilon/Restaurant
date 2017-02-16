@@ -34,8 +34,8 @@ Party::Party(const string& reservationName, int numDiners, int timeRequired) {
  * @brief Party deconstructor
  */
 Party::~Party() {
-    delete reservationName;
+    /*delete reservationName;
     reservationName = nullptr;
     numDiners = 0;
-    timeRequired = 0;
+    timeRequired = 0;*/
 }

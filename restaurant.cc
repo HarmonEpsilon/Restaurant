@@ -57,28 +57,33 @@ void Restaurant::getInput() {
  */
 void Restaurant::serveParties() {
     string waiter;
+    int keep_time;
 
     while(!waiting.empty()) {
         for(Table* reserved = occupied.first(); reserved != nullptr; reserved = occupied.next()) {
-            reserved->decrementTimer();
+            keep_time = reserved->getTimer();
 
-            if(reserved->getTimer() == 0) {
-                cout << (reserved->getParty())->getReservationName() << " finished" << endl;
+            if(keep_time == 0) {
+                cout << *(reserved->getParty()->getReservationName()) << " finished" << endl;
                 occupied.remove();
                 reserved->clearTable();
                 available.append(reserved);
+            } else {
+                reserved->decrementTimer();
             }
         }
 
         for(Party* in_line = waiting.first(); in_line != nullptr; in_line = waiting.next()) {
             for(Table* up_next = available.first(); up_next != nullptr; up_next = available.next()) {
                 if(in_line->getNumDiners() <= up_next->getNumSeats()) {
-                    cout << in_line->getReservationName() << " seated" << endl;
+                    cout << *(in_line->getReservationName()) << " seated at " << *(up_next->getTableID()) << endl;
                     waiter = *(up_next->getServerName());
-                    servers[waiter] = servers[waiter] + in_line->getNumDiners();
                     up_next->seatParty(in_line);
+                    servers[waiter] = servers[waiter] + in_line->getNumDiners();
                     occupied.append(up_next);
-                    available.remove();
+                    up_next = available.remove();
+                    up_next = available.first();
+                    in_line = waiting.remove();
                 }
             }
         }

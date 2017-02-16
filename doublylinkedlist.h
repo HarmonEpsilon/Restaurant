@@ -103,9 +103,10 @@ void DoublyLinkedList<T>::append(T* data) {
   }
 
   Node* item = new Node(data);
-  item->prev = tail->prev;
-  tail->prev->next = item;
+  tail->next = item;
+  item->prev = tail;
   tail = item;
+  current = item;
   return;
 }
 
@@ -138,12 +139,12 @@ T* DoublyLinkedList<T>::first() {
  */
 template <class T>
 T* DoublyLinkedList<T>::next() {
-  if(current->next == nullptr) {
+  if(current->next == nullptr || current == nullptr || head == nullptr) {
     return nullptr;
+  } else {
+    current = current->next;
+    return current->data;
   }
-
-  current = current->next;
-  return current->data;
 }
 
 /**
@@ -158,42 +159,43 @@ T* DoublyLinkedList<T>::next() {
 template <class T>
 T* DoublyLinkedList<T>::remove() {
   if(head == nullptr && tail == nullptr) {
+    current = nullptr;
     return nullptr;
-  }
-
-  if(current->prev == nullptr && current->next != nullptr) {
-    head = current->next;
-    current->next->prev = nullptr;
-    delete current->data;
+  } else if(current->prev == nullptr && current->next == nullptr) {
     delete current;
-    return head->data;
-  }
+    head = nullptr;
+    tail = nullptr;
+    current = nullptr;
 
-  if(current->prev == nullptr && current->next == nullptr) {
-    head = current->next;
-    tail = current->prev;
-    delete current->data;
-    delete current;
     return nullptr;
-  }
+  } else if(current->prev != nullptr && current->next != nullptr) {
+    Node* prefix = current->prev;
+    Node* suffix = current->next;
 
-  if(current->next == nullptr) {
-    tail->prev->next = nullptr;
-    tail = tail->prev;
-    delete current->data;
     delete current;
+    prefix->next = suffix;
+    suffix->prev = prefix;
+    current = suffix;
+
+    return current->data;
+  } else if(current == head) {
+    Node* suffix = current->next;
+
+    delete current;
+    current = suffix;
+    current->prev = nullptr;
+    head = current;
+
+    return current->data;
+  } else {
+    Node* prefix = current->prev;
+  
+    delete current;
+    current = nullptr;
+    tail = prefix;
+    tail->next = nullptr;
+
     return nullptr;
-  }
-
-  if(current->next != nullptr && current->prev != nullptr) {
-    Node* after = current->next;
-
-    current->prev->next = current->next;
-    current->next->prev = current->prev;
-    delete current->data;
-    delete current;
-
-    return after->data;
   }
 
   return nullptr;
