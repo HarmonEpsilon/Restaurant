@@ -49,7 +49,7 @@ void Restaurant::serveParties(){
             else{
                 table->decrementTimer();
             }
-            table = occupied.next();
+            table = occupied->next();
         }
         reservation = waiting.first();
         while(reservation != nullptr){
