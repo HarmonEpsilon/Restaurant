@@ -73,13 +73,12 @@ DoublyLinkedList<T>::DoublyLinkedList() {
  */
 template <class T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
-  Node* first = head;
-  while(first != nullptr) {
-    Node* cur = first;
-    first = first->next;
-    delete cur->data;
-    delete cur;
-  }
+  delete head;
+  head = nullptr;
+  delete tail;
+  tail = nullptr;
+  delete current;
+  current = nullptr;
 }
 
 /**

@@ -38,12 +38,12 @@ Table::Table(const string& tableID, int numSeats, const string& serverName) {
  * @brief Table deconstructor
  */
 Table::~Table() {
-    delete tableID;
+    /*delete tableID;
     tableID = nullptr;
     delete serverName;
     serverName = nullptr;
     delete party;
-    party = nullptr;
+    party = nullptr;*/
 }
 
 /**
