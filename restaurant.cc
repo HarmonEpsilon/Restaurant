@@ -27,23 +27,23 @@ using std::map;
  * in appropriate queues.
  */
 void Restaurant::getInput() {
-    string server, name, id, input;
-    int serving = 0, timer = 0;
+    string serverID, name, reservation, id, buffer_in;
+    int serving = 0, timer = 0, seats = 0;
 
-    while(cin >> input) {
-        if(input == "end") {
-            break;
+    cin >> buffer_in;
+
+    while(buffer_in != "end") {
+        if(buffer_in == "table") {
+            cin >> name >> seats >> serverID;
+            Table* order_up = new Table(name, seats, serverID);
+            available.append(order_up);
+        } else if(buffer_in == "party") {
+            cin >> serving >> reservation >> timer;
+            Party* order_out = new Party(reservation, serving, timer);
+            waiting.append(order_out);
         }
 
-        if(input == "table") {
-            cin >> name >> serving >> server;
-            Table* orderUp = new Table(name, serving, server);
-            available.append(orderUp);
-        } else if (input == "party") {
-            cin >> serving >> name >> timer;
-            Party* orderOut = new Party(name, serving, timer);
-            waiting.append(orderOut);
-        }
+        cin >> buffer_in;
     }
 }
 

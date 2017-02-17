@@ -123,9 +123,10 @@ template <class T>
 T* DoublyLinkedList<T>::first() {
   if(head == nullptr && tail == nullptr) {
     return nullptr;
+  } else {
+    current = head;
+    return head->data;
   }
-
-  return head->data;
 }
 
 /**
@@ -159,7 +160,7 @@ T* DoublyLinkedList<T>::next() {
  */
 template <class T>
 T* DoublyLinkedList<T>::remove() {
-  if(head == nullptr && tail == nullptr) {
+  if(head == nullptr) {
     current = nullptr;
     return nullptr;
   } else if(current->next == nullptr && current->prev == nullptr) {
