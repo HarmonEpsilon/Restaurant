@@ -71,7 +71,7 @@ void Restaurant::serveParties() {
             if(keep_time == 0) {
                 const Party* party_one = order_out->getParty();
 
-                cout << *(party_one->getReservationName()) << " served at "
+                cout << *(party_one->getReservationName()) << " finished at "
                     << *(order_out->getTableID()) << endl;
                 
                 delete party_one;
@@ -81,9 +81,10 @@ void Restaurant::serveParties() {
                 order_out = occupied.remove();
             } else {
                 order_out->decrementTimer();
+                order_out = occupied.next();
             }
 
-            order_out = occupied.next();
+            //order_out = occupied.next();
         }
 
         up_next = waiting.first();
